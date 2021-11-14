@@ -6,7 +6,7 @@ function onClickedEstimatePrice() {
   var mileage_ = document.getElementById("uimileage");
   var fuel_ = document.getElementById("uifuel");
   var estPrice = document.getElementById("uiEstimatedPrice");
-
+  const api = Process.env.PORT || 3000 ;
   //var url = "http://127.0.0.1:5000/get_est_price"; //Use this if you are NOT using nginx which is first 7 tutorials
   var url = "/api/predict_home_price"; // Use this if  you are using nginx. i.e tutorial 8 and onwards
 
