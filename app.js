@@ -8,6 +8,10 @@ function onClickedEstimatePrice() {
   var estPrice = document.getElementById("uiEstimatedPrice");
   //var url = "http://127.0.0.1:5000/get_est_price"; //Use this if you are NOT using nginx which is first 7 tutorials
   var url = "//api/get_est_price"; // Use this if  you are using nginx. i.e tutorial 8 and onwards
+  const PORT = process.env.PORT || 3000;
+  server.listen(PORT, () => {
+  console.warn(`App listening on http://localhost:${PORT}`);
+  });
   $.post(url, {
       year: parseFloat(year_.value),
       fuel: fuel_.value,
