@@ -1,4 +1,4 @@
-from flask import Flask,jsonify,request
+from flask import Flask,jsonify,render_template,request
 import util 
 app=Flask(__name__)
 
@@ -14,7 +14,8 @@ def get_est_price():
         })
     response.headers.add('Access-Control-Allow-Origin','*')
     
-    return response
+    return response, render_template('app.html')
+    
 
 
 if __name__ == '__main__':
