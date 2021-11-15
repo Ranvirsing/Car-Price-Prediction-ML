@@ -19,4 +19,4 @@ def get_est_price():
 
 if __name__ == '__main__':
     util.load_artfacts()
-    app.run()
+    app.run(debug=True)
