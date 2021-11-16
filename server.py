@@ -21,5 +21,6 @@ def get_est_price():
 
 
 if __name__ == '__main__':
+    apps()
     util.load_artfacts()
     app.run(debug=True)
