@@ -1,7 +1,9 @@
-from flask import Flask,jsonify,render_template,request
+from flask import Flask,jsonify,render_template,request,url_for
 import util 
 app=Flask(__name__)
-
+@app.route('/')
+def apps():
+    return render_template('app.html')
 @app.route('/get_est_price', methods = ['POST','GET'])
 def get_est_price():
     year=int(request.form['year'])
