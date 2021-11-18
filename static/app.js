@@ -6,6 +6,8 @@ function onClickedEstimatePrice() {
   var mileage_ = document.getElementById("uimileage");
   var fuel_ = document.getElementById("uifuel");
   var estPrice = document.getElementById("uiEstimatedPrice");
+  var port = process.env.PORT || 3000;
+  server.listen(port);
   $.post("/get_est_price", {
       year: parseFloat(year_.value),
       fuel: fuel_.value,
