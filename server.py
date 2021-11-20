@@ -16,7 +16,7 @@ def get_est_price():
         })
     response.headers.add('Access-Control-Allow-Origin','*')
     
-    return response
+    return response,render_template('app.html')
     
 
 
