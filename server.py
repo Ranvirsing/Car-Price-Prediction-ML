@@ -1,3 +1,5 @@
+from flask import Flask,jsonify, render_template, request,url_for
+import requests
 import pickle
 app = Flask(__name__)
 model = pickle.load(open('carpred.pkl', 'rb'))
