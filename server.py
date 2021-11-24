@@ -1,26 +1,35 @@
-from flask import Flask,jsonify,render_template,request,url_for
-import util 
-app=Flask(__name__)
+import pickle
+app = Flask(__name__)
+model = pickle.load(open('carpred.pkl', 'rb'))
 @app.route('/')
-def apps():
+def Home():
     return render_template('app.html')
-@app.route('/get_est_price', methods = ['POST'])
-def get_est_price():
+
+@app.route("/predict", methods=['POST'])
+def predict():
     year=int(request.form['year'])
     km=int(request.form['km'])
     tran=request.form['tran']
     mileage=int(request.form['mileage'])
     fuel=request.form['fuel'] 
-    response = jsonify({
-        'est_price':util.get_est_price(year,km,tran,mileage,fuel)
-        })
-    response.headers.add('Access-Control-Allow-Origin','*')
-    
-    return render_template('app.html')
-    
+    if(tran=='Manual'):
+        tran1=0
+    else:
+        tran1=1
+    if(fuel=='Petrol'):
+        fuel1=0
+    elif(fuel=='Diesel'):
+        fuel1=1
+    elif(fuel=='LPG'):
+        fuel1=2
+    else:
+        fuel1=3 
+    output=int(model.predict([[year,km,tran1,mileage,fuel1]])[0])
+    if output<0:
+        return render_template('app.html',prediction_texts="Sorry you cannot sell this car")
+    else:
+        return render_template('app.html',prediction_text="You Can Sell The Car at {}".format(output))
 
 
-if __name__ == '__main__':
-    apps()
-    util.load_artfacts()
-    app.run(debug=True)
+if __name__=="__main__":
+    app.run()
