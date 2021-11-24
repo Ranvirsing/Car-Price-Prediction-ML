@@ -2,8 +2,6 @@
 <html>
 <head>
     <title>Banglore Home Price Prediction</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="{{ url_for('static',filename='app.js')}}"></script>
 	<link rel="stylesheet" href="{{ url_for('static',filename='app.css') }}">
 
     
@@ -14,9 +12,11 @@
 <div class="column">
     <h1 style="color: white; text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;font-size: 40px;height: 35px;border-radius: 5px;position:relative; left:250px; top:150px;">CAR Price Prediction</h1>
     <div class="author"><p>Created by Ranvirsing Sisodiya</p></div>
-    <form class="est">
-	<button class="submit" onclick="onClickedEstimatePrice()" type="button" >Estimate Price</button>
+    <form class="est" action="{{ url_for('predict')}}" method="post">
+	<br><br><button class="submit" type="submit ">Estimate Price</button>
+         <br>
 	<div id="uiEstimatedPrice" class="result"><h1></h1> </div></form>
+	<br><br><h3>{{ prediction_text }}<h3>
 </div>
 <div class="column">
 <form class="form">
