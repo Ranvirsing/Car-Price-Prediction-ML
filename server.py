@@ -9,11 +9,11 @@ def Home():
 
 @app.route("/predict", methods=['POST'])
 def predict():
-    year=int(request.form['years'])
-    km=int(request.form['kms'])
-    tran=request.form['trans']
-    mileage=int(request.form['ml'])
-    fuel=request.form['fuels'] 
+    year=int(request.form.get('years'))
+    km=int(request.form.get('kms'))
+    tran=request.form.get('trans')
+    mileage=int(request.form.get('ml'))
+    fuel=request.form.get('fuels')
     if(tran=='Manual'):
         tran1=0
     else:
