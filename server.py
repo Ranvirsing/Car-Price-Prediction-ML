@@ -7,13 +7,13 @@ model = pickle.load(open('carpred.pkl', 'rb'))
 def Home():
     return render_template('app.html')
 
-@app.route("/predict", methods=['POST'])
+@app.route("/predict", methods=['POST','GET'])
 def predict():
-    year=int(request.form.get('years'))
-    km=int(request.form.get('kms'))
-    tran=request.form.get('trans')
-    mileage=int(request.form.get('ml'))
-    fuel=request.form.get('fuels')
+    year=int(request.form['years'])
+    km=int(request.form['kms'])
+    tran=request.form['trans']
+    mileage=int(request.form['ml'])
+    fuel=request.form['fuels']
     if(tran=='Manual'):
         tran1=0
     else:
@@ -30,7 +30,7 @@ def predict():
     if output<0:
         return render_template('app.html',prediction_texts="Sorry you cannot sell this car")
     else:
-        return render_template('app.html',prediction_text="You Can Sell The Car at {}".format(output))
+        return render_template('app.html',prediction_text="₹ {} /- ONLY".format(output))
 
 
 if __name__=="__main__":
